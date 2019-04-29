@@ -1,0 +1,31 @@
+.model small
+PRINT MACRO Q
+LEA Dx,Q
+MOV AH, 09H
+INT 21H
+endm
+.DATA
+MSG DB 'FIBONACCI SERIES IS $'
+.code
+.startup
+PRINT MSG
+MOV DL, 30H
+MOV AH, 02H
+INT 21H
+MOV DL, 31H
+MOV AL, 02H
+INT 21H
+MOV BH,00H
+MOV BL,01H
+MOV CX,05
+L1:
+   MOV DH,BL
+   ADD BL,BH
+   MOV BH,DH
+   MOV Dl,BL
+   add DL,30H
+   MOV AH,02H 
+   INT 21H
+   loop l1
+.EXIT
+END
